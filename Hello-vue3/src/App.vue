@@ -9,16 +9,16 @@
         </div>
         <!-- 展示区 -->
         <div class="main-content">
-            主要内容展示区
+            <RouterView />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-
+import{RouterView}from 'vue-router'
 </script>
 
-<style>
+<style scoped>
 .title {
     text-align: center;
     word-spacing: 5px;
