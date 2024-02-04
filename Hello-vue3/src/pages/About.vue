@@ -5,10 +5,16 @@
 </template>
 
 <script lang="ts" setup name="about">
-
+  import{onMounted,onUnmounted} from 'vue'
+  // onMounted(()=>{
+  //   console.log('about页面挂载')
+  // })
+  // onUnmounted(()=>{
+  //   console.log('about页面卸载')
+  // })
 </script>
 
-<style>
+<style scoped>
 .about{
     display: flex;
     justify-content: center;

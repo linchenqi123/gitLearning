@@ -1,16 +1,26 @@
 <template>
   <div class="news">
     <ul>
-        <li><a href="@">新闻001</a></li>
-        <li><a href="@">新闻002</a></li>
-        <li><a href="@">新闻003</a></li>
-        <li><a href="@">新闻004</a></li>
+        <li v-for="news in newsList" :key="news.id">
+            <RouterLink to="/news/news-detail">{{ news.title }}</RouterLink>
+        </li>
+
     </ul>
-  </div>
+    <div class="news-content">
+        <RouterView />
+    </div>
+    </div>
 </template>
 
 <script lang="ts" setup name="news">
-
+import{reactive}from 'vue'
+import { RouterLink,RouterView } from 'vue-router'
+let newsList = reactive([
+    {id:1,title:'十种重要的养生法则',content:'养生法则1：保持心情愉快，心情愉快是健康长寿的重要保证。心情愉快有利于消化吸收，有利于血液循环，有利于免疫功能的提高。'},
+    {id:2,title:'暴富的方法',content:'暴富的方法1：不要把钱放在银行里，银行利息太低，不如把钱投资在股票、基金、期货、外汇等投资品种上。'},
+    {id:3,title:'猫咪的习性',content:'猫咪的习性1：猫咪是一种独立的动物，它们喜欢独自玩耍，喜欢独自睡觉，喜欢独自思考。猫咪的独立性是它们的天性。'},
+    {id:4,title:'编程好习惯',content:'编程好习惯1：编程是一种高度的思维活动，编程需要有耐心，需要有毅力，需要有创造力，需要有逻辑思维。编程是一种高度的思维活动。'}
+])
 </script>
 
 <style scoped>

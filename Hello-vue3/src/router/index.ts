@@ -15,7 +15,14 @@ const router=createRouter({
         {
             path:'/news',
             name:'News',
-            component:()=>import('../pages/News.vue')
+            component:()=>import('../pages/News.vue'),
+            children:[
+                {
+                    path:'news-detail',
+                    name:'NewsDetail',
+                    component:()=>import('../pages/NewsDetail.vue')
+                }
+            ]
         }
     ]
     })
