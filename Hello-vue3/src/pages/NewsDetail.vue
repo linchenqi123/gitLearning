@@ -1,15 +1,16 @@
 <template>
   <div class="news-list">
     <ul>
-        <li>id:XXXX</li>
-        <li>标题:XXXX</li>
-        <li>内容:XXXX</li>
+        <li>id:{{route.query.id}}</li>
+        <li>标题:{{route.query.title}}</li>
+        <li>内容:{{route.query.content}}</li>
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup name="newsDetail">
-
+import { useRoute } from "vue-router"
+let route = useRoute()
 </script>
 
 <style scoped>

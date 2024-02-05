@@ -2,7 +2,20 @@
   <div class="news">
     <ul>
         <li v-for="news in newsList" :key="news.id">
-            <RouterLink to="/news/news-detail">{{ news.title }}</RouterLink>
+            <!-- 第一种写法 -->
+            <!-- <RouterLink :to="`/news/news-detail?id=${news.id}&title=${news.title}&content=${news.content}`">{{ news.title }}</RouterLink> -->
+            <RouterLink :to="{
+                path:'/news/news-detail',
+                query:{
+                    id:news.id,
+                    title:news.title,
+                    content:news.content
+                }
+            
+            }">
+                {{ news.title }}
+            </RouterLink>
+
         </li>
 
     </ul>
@@ -32,7 +45,11 @@ let newsList = reactive([
 }
 .news ul{
     margin-top: 30px;
-    list-style: none;
+    /* list-style: none; */
+    padding-left: 20px;
+}
+.news li::marker{
+    color: #64967E;
 }
 .news li>a{
     font-size: 18px;
