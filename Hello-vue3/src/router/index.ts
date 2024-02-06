@@ -3,7 +3,7 @@ const router=createRouter({
     history: createWebHistory(),
     routes: [
         {
-        path: '/',
+        path: '/home',
         name: 'Home',
         component: () => import('../pages/Home.vue')
         },
@@ -18,11 +18,22 @@ const router=createRouter({
             component:()=>import('../pages/News.vue'),
             children:[
                 {
-                    path:'news-detail',
+                    path:'news-detail/:id/:title/:content',
                     name:'NewsDetail',
-                    component:()=>import('../pages/NewsDetail.vue')
+                    component:()=>import('../pages/NewsDetail.vue'),
+                    //如果是使用params传参，需要使用下面的写法
+                    props:true
+                    //如果是使用query传参，需要使用下面的写法
+                    // props(route){
+                    //     route route.query
+                    // }
                 }
             ]
+        },
+        // 重定向
+        {
+            path:'/',
+            redirect:'/home'
         }
     ]
     })
