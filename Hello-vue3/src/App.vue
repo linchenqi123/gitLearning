@@ -1,7 +1,7 @@
 <template>
     <div class="app">
         <Header></Header>
-        <!-- 导航去 -->
+        <!-- 导航区 -->
         <div class="navigate">
             <RouterLink  to="/home" active-class="active">首页</RouterLink>
             <RouterLink  to="/news" active-class="active">新闻</RouterLink>
