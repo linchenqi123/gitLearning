@@ -2,7 +2,7 @@
   <div class="talk">
     <button @click="getLoveTalk">获取一句土味情话</button>
     <ul>
-        <li v-for="talk in talkList" :key="talk.id">{{ talk.content }}</li>
+        <li v-for="talk in talkStore.talkList" :key="talk.id">{{ talk.content }}</li>
     </ul>
   </div>
 </template>
@@ -11,14 +11,12 @@
 import{reactive}from 'vue'
 import axios from "axios";
 import { nanoid } from "nanoid";
-let talkList = reactive([
-    {id:'1', content:'你是我今生的唯一'},
-    {id:'2', content:'我愿意为你做任何事'},
-    {id:'3', content:'我爱你'},
-    {id:'4', content:'你今天有点怪，怪可爱的'},
-    {id:'5', content:'草莓，蓝莓，蔓越莓，想我没？'},
-    {id:'6', content:'心里给你留了一块地，死心塌地'},
-])
+import{useTalkStore}from "@/store/LoveTalk"
+const talkStore=useTalkStore()
+
+talkStore.$subscribe((mutate,state)=>{
+  localStorage.setItem("talkList",JSON.stringify(state.talkList))
+})
 async function getLoveTalk() {
     try {
         // https://api.lovelive.tools/api/SweetNothings
@@ -26,7 +24,7 @@ async function getLoveTalk() {
         // let {data:{content:title}} =  await axios.get('https://api.uomg.com/api/rand.qinghua?format=json');
         let {data:{content}} =  await axios.get('https://api.uomg.com/api/rand.qinghua?format=json');
         let obj={id:nanoid(),content}
-        talkList.unshift(obj)
+        talkStore.talkList.unshift(obj)
         console.log(obj);
     } catch (error) {
         console.error(error);
